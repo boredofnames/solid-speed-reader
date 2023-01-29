@@ -25,8 +25,9 @@
   flex: 1;
 }
 
-.inputcon .input {
-  flex: 1;
+.inputcon textarea {
+  height: 100px;
+  resize: vertical;
 }
 
 .inputcon .buttons {
@@ -47,4 +48,19 @@
 
 .centerText {
   text-align: center;
+}
+
+button {
+  background-color: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 4px;
+}
+
+input,
+textarea {
+  background-color: var(--bg);
+  color: var(--text);
+  padding: 4px;
+  border: 1px solid var(--border);
 }
