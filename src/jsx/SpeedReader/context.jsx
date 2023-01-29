@@ -34,11 +34,13 @@ export function SRProvider(props) {
     state,
     {
       setInput(input) {
-        setState("input", () => input.split(" "));
+        setState("input", () => input.split(/\s/g));
         setState("current", () => 0);
       },
       setRandomInput() {
-        setState("input", () => randomElementFromArray(randomTexts).split(" "));
+        setState("input", () =>
+          randomElementFromArray(randomTexts).split(/\s/g)
+        );
         setState("current", () => 0);
       },
       clearInput() {
