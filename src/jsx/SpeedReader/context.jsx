@@ -34,38 +34,34 @@ export function SRProvider(props) {
     state,
     {
       setInput(input) {
-        setState("input", () => input.split(/\s/g));
-        setState("current", () => 0);
+        setState({ input: input.split(/\s/g), current: 0 });
       },
       setRandomInput() {
-        setState("input", () =>
-          randomElementFromArray(randomTexts).split(/\s/g)
-        );
-        setState("current", () => 0);
+        setState({
+          input: randomElementFromArray(randomTexts).split(/\s/g),
+          current: 0,
+        });
       },
       clearInput() {
-        setState("input", () => []);
-        setState("current", () => 0);
+        setState({ input: [], current: 0 });
       },
       setCurrent() {
-        if (state.current + 1 === state.input.length)
-          setState("state", () => STATES.IDLE);
-        setState("current", (index) =>
-          index + 1 === state.input.length ? 0 : index + 1
-        );
+        setState((state) => ({
+          state:
+            state.current + 1 === state.input.length
+              ? STATES.IDLE
+              : state.state,
+          current:
+            state.current + 1 === state.input.length ? 0 : state.current + 1,
+        }));
       },
       setSpeed(ms) {
         if (ms < 1) ms = 1;
         else if (ms > 1000) ms = 1000;
-        setState("speed", () => ms);
+        setState({ speed: ms });
       },
       setSRState(state) {
-        setState("state", () => state);
-      },
-      toggleState() {
-        setState("state", (state) =>
-          state === STATES.IDLE ? STATES.RUNNING : STATES.IDLE
-        );
+        setState({ state: state });
       },
     },
   ];
